@@ -1,1 +1,19 @@
 
+- name: my play to do the first project
+  hosts: localhost
+  become: true
+  tasks:
+    - name: update the packages
+      command: apt update
+    - name: instlling jenkins
+      command: bash jenkins.sh
+    - name: installing docker and git
+      package: name={{item}} state=present
+      loop:
+         - docker.io
+         - git
+    - name: start the docker and jenkins service
+      service: name={{item}} state=started
+      loop:
+        - jenkins
+        - docker
