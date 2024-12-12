@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+    tools{
+         maven 'mvn'
+     }
+    stages {
+        stage('cloning a repo') {
+            steps {
+                git 'https://github.com/yashas-devops/banking-finance-Project1.git'
+            }
+        }
+        stage('testing the code') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('building the code') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('building docker image') {
+            steps {
+                sh 'docker build -t yash .'
+            }
+        }
+         stage('building docker container') {
+            steps {
+                sh 'docker run -d -P yash'
+            }
+        }
+    }
+}
