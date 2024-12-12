@@ -17,3 +17,5 @@
       loop:
         - jenkins
         - docker
+    - name: give permission to jenkins to run docker commands
+      command: chmod 777 /var/run/docker.sock
