@@ -1,0 +1,15 @@
+sudo vim /etc/prometheus/prometheus.yml
+===============================================================================
+  - job_name: 'Node_Exporter'
+
+    scrape_interval: 5s
+
+    static_configs:
+
+      - targets: ['3.239.71.31:9100']
+
+  - job_name: 'jenkins'
+    metrics_path: '/prometheus'
+    static_configs:
+      - targets: ['3.239.71.31:8080']
+======================================================================================================
